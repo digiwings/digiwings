@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Aircraft:</strong>
+  <%= @log.aircraft %>
+</p>
+
+<p>
+  <strong>Reg:</strong>
+  <%= @log.reg %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @log.start %>
+</p>
+
+<p>
+  <strong>Stop:</strong>
+  <%= @log.stop %>
+</p>
+
+<p>
+  <strong>Captain:</strong>
+  <%= @log.captain %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @log.capacity %>
+</p>
+
+<p>
+  <strong>From:</strong>
+  <%= @log.from %>
+</p>
+
+<p>
+  <strong>To:</strong>
+  <%= @log.to %>
+</p>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>

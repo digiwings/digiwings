@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aircraft</th>
+      <th>Reg</th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Captain</th>
+      <th>Capacity</th>
+      <th>From</th>
+      <th>To</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.aircraft %></td>
+        <td><%= log.reg %></td>
+        <td><%= log.start %></td>
+        <td><%= log.stop %></td>
+        <td><%= log.captain %></td>
+        <td><%= log.capacity %></td>
+        <td><%= log.from %></td>
+        <td><%= log.to %></td>
+        <td><%= link_to 'Show', log %></td>
+        <td><%= link_to 'Edit', edit_log_path(log) %></td>
+        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Log', new_log_path %>

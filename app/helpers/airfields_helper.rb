@@ -1,0 +1,2 @@
+module AirfieldsHelper
+end
