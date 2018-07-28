@@ -18,7 +18,11 @@ RSpec.describe Skydemon do
         expect(result.first.tail_number).to eql("")
         expect(result[1].origin_icao).to eql("EGCJ")
         expect(result[1].destination_icao).to eql("EGNF")
+        expect(result[1].actual_departure_time.to_i).to eql(DateTime.strptime("2018-07-03 17:11 UTC", "%Y-%m-%d %H:%M %z").to_i)
+        expect(result[1].actual_arrival_time.to_i).to eql(DateTime.strptime("2018-07-03 17:58 UTC", "%Y-%m-%d %H:%M %z").to_i)
       end
+
+      it "handles unfindable airfields"
     end
   end
 end
