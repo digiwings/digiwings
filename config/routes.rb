@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   root :to => "home#index"
-  mount_griddler('/email/incoming')
+  mount_griddler('/email/inbound')
   authenticated :user do
     resources :logs
   end
