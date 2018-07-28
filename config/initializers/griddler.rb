@@ -3,5 +3,5 @@ Griddler.configure do |config|
   config.email_class = Griddler::Email # MyEmail
   config.processor_method = :process # :create_comment (A method on CommentViaEmail)
   config.reply_delimiter = '-- REPLY ABOVE THIS LINE --'
-  config.email_service = :sendgrid # :cloudmailin, :postmark, :mandrill, :mailgun
+  config.email_service = :mailgun
 end
