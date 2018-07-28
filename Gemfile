@@ -7,6 +7,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'geokit-rails'
+gem 'griddler'
+gem 'griddler-mailgun'
 gem 'jbuilder', '~> 2.5'
 gem 'pg'
 gem 'pg_search'
