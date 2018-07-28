@@ -13,13 +13,25 @@ class Skydemon
 
   def self.flight_from_hash(h)
     parts = h["Log Name"].split("-").map(&:strip!)
-    origin_str = parts[0]
-    dest_str = parts[0]
-    if parts[0] == "("
-    end
 
     Flight.new({
-      tail_number: ""
+      tail_number: "",
+      origin_icao: self.get_airfield_icao_from_location(parts[0]),
+      destination_icao: self.get_airfield_icao_from_location(parts[1])
     })
+  end
+
+  def self.get_airfield_icao_from_location(location)
+    a = Airfield.search_full_text(parse_location_string(location)).first 
+    if a.present?
+      return a.icao
+    end
+    location.split(")").last.strip
+  end
+
+  def self.parse_location_string(location)
+      x = /^\((.*)\snm\)(.*)$/.match(location)
+      return location unless x.present?
+      return x[1]
   end
 end

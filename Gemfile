@@ -19,6 +19,7 @@ gem 'upsert'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -30,6 +31,7 @@ end
 
 group :test do
   gem "database_cleaner"
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
   gem "rspec-rails"
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
