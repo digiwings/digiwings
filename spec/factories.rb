@@ -17,4 +17,9 @@ FactoryBot.define do
     body 'Hello!'
     attachments {[]}
   end
+
+  factory :user do
+    email { Faker::Internet.email }
+    password { "password" }
+  end
 end
