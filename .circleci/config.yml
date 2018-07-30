@@ -17,6 +17,7 @@ jobs:
           POSTGRES_PASSWORD: password 
     steps:
       - checkout
+      - run: sudo apt install postgresql-client
 
       # Restore Cached Dependencies
       - type: cache-restore
