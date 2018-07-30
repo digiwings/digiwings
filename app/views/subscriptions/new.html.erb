@@ -1,0 +1,65 @@
+<h2>Subscribe to digiwings</h2>
+
+<%= form_tag({:controller => "subscriptions", :action => "create"}, :method => "post", :id => "new_subscriber") do |f| %>
+
+  <span class="payment-errors"></span>
+
+  <p>
+    <%= label_tag "Card Number"%>
+    <%= text_field_tag nil, nil, data: { stripe: "number" } %>
+  </p>
+
+  <p>
+    <%= label_tag "Expiration (MM/YY)" %>
+    <%= text_field_tag nil, nil, data: { stripe: "exp_month" }, size: 4 %>
+    <span>/</span>
+    <%= text_field_tag nil, nil, data: { stripe: "exp_year" }, size: 4 %>
+  </p>
+
+  <p>
+    <%= label_tag "CVC"%>
+    <%= text_field_tag nil, nil, data: { stripe: "cvc" }, size: 4 %>
+  </p>
+
+  <%= submit_tag "Submit Payment", class: "submit" %>
+
+<% end %>
+
+<script>
+  $(function() {
+  var $form = $('#new_subscriber');
+  $form.submit(function(event) {
+    // Disable the submit button to prevent repeated clicks:
+    $form.find('.submit').prop('disabled', true);
+
+    // Request a token from Stripe:
+    Stripe.card.createToken($form, stripeResponseHandler);
+
+    // Prevent the form from being submitted:
+    return false;
+  });
+});
+
+function stripeResponseHandler(status, response) {
+  // Grab the form:
+  var $form = $('#new_subscriber');
+
+  if (response.error) { // Problem!
+
+    // Show the errors on the form:
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+  } else { // Token was created!
+
+    // Get the token ID:
+    var token = response.id;
+
+    // Insert the token ID into the form so it gets submitted to the server:
+    $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+    // Submit the form:
+    $form.get(0).submit();
+  }
+};
+</script>

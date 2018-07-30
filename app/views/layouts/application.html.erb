@@ -7,6 +7,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+      Stripe.setPublishableKey('<%= Rails.application.credentials.dig(Rails.env.to_sym, :stripe_public_key) %>');
+  </script>
   </head>
 
   <body>

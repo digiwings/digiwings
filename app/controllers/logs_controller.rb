@@ -71,4 +71,11 @@ class LogsController < ApplicationController
     def log_params
       params.require(:log).permit(:aircraft, :reg, :start, :stop, :captain, :capacity, :from, :to)
     end
+
+  private
+
+  def requires_subscription?(user)
+    user.billing_status.eql?("subscribed")
+    user.logs.count < 10
+  end
 end

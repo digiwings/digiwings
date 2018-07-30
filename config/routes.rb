@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
+    resource :subscription
     resources :logs
     resources :flights
   end
